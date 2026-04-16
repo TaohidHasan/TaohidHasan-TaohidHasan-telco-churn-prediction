@@ -12,6 +12,71 @@ st.set_page_config(page_title="Customer Churn Prediction", layout="centered")
 st.title("Customer Churn Prediction")
 st.write("Enter customer details to predict churn risk.")
 
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(135deg, #f4f7ff 0%, #eefafc 45%, #f9f0ff 100%);
+}
+
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 950px;
+}
+
+h1 {
+    color: #1f2a44 !important;
+    font-weight: 800 !important;
+}
+
+h3 {
+    color: #243b6b !important;
+}
+
+div[data-baseweb="select"] > div,
+div[data-baseweb="input"] > div,
+div[data-baseweb="base-input"] > div {
+    background-color: rgba(255,255,255,0.92) !important;
+    border: 1px solid #d6dcff !important;
+    border-radius: 12px !important;
+}
+
+.stNumberInput > div > div > input,
+.stTextInput > div > div > input {
+    background-color: rgba(255,255,255,0.92) !important;
+}
+
+.stButton > button {
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.7rem 1.2rem !important;
+    font-weight: 700 !important;
+    width: 100%;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(90deg, #4338ca, #0891b2);
+}
+
+[data-testid="stAlert"] {
+    border-radius: 14px !important;
+}
+
+.section-card {
+    background: rgba(255,255,255,0.78);
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(88, 108, 255, 0.10);
+    border: 1px solid rgba(155, 170, 255, 0.25);
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+
 @st.cache_resource
 def train_model():
     df = pd.read_excel("Telco_customer_churn.xlsx")
