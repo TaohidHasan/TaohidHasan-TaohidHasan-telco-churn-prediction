@@ -69,4 +69,59 @@ def train_model():
     ])
 
     model = Pipeline([
-        ("preprocessor", 
+        ("preprocessor", preprocessor),
+        ("model", GradientBoostingClassifier(random_state=42))
+    ])
+
+    model.fit(X, y)
+    return model, X.columns.tolist()
+
+model, feature_order = train_model()
+
+input_data = {
+    "Country": st.selectbox("Country", ["United States"]),
+    "State": st.text_input("State", "California"),
+    "City": st.text_input("City", "San Diego"),
+    "Zip Code": st.number_input("Zip Code", min_value=1, value=92101),
+    "Lat Long": st.text_input("Lat Long", "32.7157, -117.1611"),
+    "Latitude": st.number_input("Latitude", value=32.7157, format="%.6f"),
+    "Longitude": st.number_input("Longitude", value=-117.1611, format="%.6f"),
+    "Gender": st.selectbox("Gender", ["Male", "Female"]),
+    "Senior Citizen": st.selectbox("Senior Citizen", ["Yes", "No"]),
+    "Partner": st.selectbox("Partner", ["Yes", "No"]),
+    "Dependents": st.selectbox("Dependents", ["Yes", "No"]),
+    "Tenure Months": st.number_input("Tenure Months", min_value=0, max_value=100, value=12),
+    "Phone Service": st.selectbox("Phone Service", ["Yes", "No"]),
+    "Multiple Lines": st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"]),
+    "Internet Service": st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"]),
+    "Online Security": st.selectbox("Online Security", ["Yes", "No", "No internet service"]),
+    "Online Backup": st.selectbox("Online Backup", ["Yes", "No", "No internet service"]),
+    "Device Protection": st.selectbox("Device Protection", ["Yes", "No", "No internet service"]),
+    "Tech Support": st.selectbox("Tech Support", ["Yes", "No", "No internet service"]),
+    "Streaming TV": st.selectbox("Streaming TV", ["Yes", "No", "No internet service"]),
+    "Streaming Movies": st.selectbox("Streaming Movies", ["Yes", "No", "No internet service"]),
+    "Contract": st.selectbox("Contract", ["Month-to-month", "One year", "Two year"]),
+    "Paperless Billing": st.selectbox("Paperless Billing", ["Yes", "No"]),
+    "Payment Method": st.selectbox(
+        "Payment Method",
+        ["Electronic check", "Mailed check", "Bank transfer automatic", "Credit card automatic"]
+    ),
+    "Monthly Charges": st.number_input("Monthly Charges", min_value=0.0, max_value=200.0, value=70.0),
+    "Total Charges": st.number_input("Total Charges", min_value=0.0, max_value=10000.0, value=1000.0)
+}
+
+if st.button("Predict Churn"):
+    input_df = pd.DataFrame([input_data])
+    input_df = input_df[feature_order]
+
+    prediction = model.predict(input_df)[0]
+    probability = model.predict_proba(input_df)[0][1]
+
+    st.subheader("Prediction Result")
+    st.write("Predicted Churn:", "Yes" if prediction == 1 else "No")
+    st.write("Churn Probability:", f"{probability:.2%}")
+
+    if probability >= 0.5:
+        st.error("High churn risk")
+    else:
+        st.success("Low churn risk")        
