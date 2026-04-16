@@ -27,111 +27,205 @@ POSSIBLE_DATA_FILES = [
 st.markdown("""
 <style>
 :root {
-    --bg: #0f172a;
-    --card: #111827;
-    --card-2: #1f2937;
-    --text: #f8fafc;
-    --muted: #cbd5e1;
-    --accent: #14b8a6;
-    --accent2: #0ea5e9;
-    --success: #16a34a;
-    --warning: #f59e0b;
-    --danger: #ef4444;
+    --vf-red: #e60000;
+    --vf-red-dark: #b80000;
+    --vf-red-soft: #fff1f1;
+    --vf-bg: #f7f8fa;
+    --vf-card: #ffffff;
+    --vf-card-soft: #fcfcfd;
+    --vf-border: #e6e8ee;
+    --vf-text: #1f2937;
+    --vf-muted: #6b7280;
+    --vf-success: #1f9d55;
+    --vf-warning: #d97706;
+    --vf-danger: #dc2626;
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
 }
+
 .stApp {
-    background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #0b1120 100%);
-    color: var(--text);
+    background: linear-gradient(180deg, #fff5f5 0%, #f7f8fa 22%, #f7f8fa 100%);
+    color: var(--vf-text);
 }
+
 .block-container {
     max-width: 1300px;
-    padding-top: 1.5rem;
+    padding-top: 1.4rem;
     padding-bottom: 2rem;
 }
+
 .hero-box {
-    background: linear-gradient(135deg, rgba(20,184,166,.18), rgba(14,165,233,.10));
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 24px;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 60%, #fff1f1 100%);
+    border: 1px solid #ffd9d9;
+    border-radius: var(--radius-xl);
     padding: 22px 24px;
     margin-bottom: 1rem;
-    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+    box-shadow: 0 12px 35px rgba(230, 0, 0, 0.08);
 }
+
 .main-title {
-    font-size: 2.2rem;
+    font-size: 2.15rem;
     font-weight: 800;
-    color: white;
+    color: var(--vf-red);
     margin-bottom: .2rem;
+    letter-spacing: -.02em;
 }
+
 .sub-title {
-    color: #cbd5e1;
+    color: var(--vf-muted);
     font-size: 1rem;
 }
+
 .section-card {
-    background: rgba(17,24,39,.78);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 20px;
+    background: var(--vf-card);
+    border: 1px solid var(--vf-border);
+    border-radius: var(--radius-lg);
     padding: 18px 18px 12px;
     margin-bottom: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.22);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
 }
+
 .metric-card {
-    background: linear-gradient(180deg, rgba(31,41,55,.95), rgba(17,24,39,.95));
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #fffafa 100%);
+    border: 1px solid var(--vf-border);
+    border-radius: var(--radius-lg);
     padding: 16px;
     min-height: 110px;
 }
+
 .metric-label {
-    color: #94a3b8;
+    color: var(--vf-muted);
     font-size: .92rem;
     margin-bottom: 8px;
+    font-weight: 600;
 }
+
 .metric-value {
-    color: white;
+    color: var(--vf-text);
     font-size: 1.8rem;
     font-weight: 800;
     line-height: 1.1;
 }
+
 .metric-sub {
-    color: #cbd5e1;
+    color: var(--vf-muted);
     font-size: .92rem;
     margin-top: 6px;
 }
-.band-low { border-left: 6px solid #16a34a; }
-.band-high { border-left: 6px solid #f59e0b; }
-.band-very-high { border-left: 6px solid #ef4444; }
+
+.band-low {
+    border-left: 6px solid var(--vf-success);
+}
+.band-high {
+    border-left: 6px solid var(--vf-warning);
+}
+.band-very-high {
+    border-left: 6px solid var(--vf-danger);
+}
 
 .amount-box {
-    background: rgba(15,23,42,.9);
-    border: 1px dashed rgba(20,184,166,.55);
-    border-radius: 18px;
+    background: #fff8f8;
+    border: 1px dashed #f2b4b4;
+    border-radius: 16px;
     padding: 16px;
     margin-top: 8px;
 }
+
 .small-note {
-    color: #cbd5e1;
+    color: var(--vf-muted);
     font-size: .92rem;
 }
+
 div[data-testid="stForm"] {
-    background: rgba(17,24,39,.72);
-    border: 1px solid rgba(255,255,255,.08);
+    background: var(--vf-card);
+    border: 1px solid var(--vf-border);
     border-radius: 22px;
     padding: 16px 16px 8px 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
+
+div[data-testid="stMetric"] {
+    background: #ffffff;
+    border: 1px solid var(--vf-border);
+    border-radius: 16px;
+    padding: 8px;
+}
+
+div[data-baseweb="select"] > div {
+    background: #ffffff !important;
+    border: 1px solid #d9dee8 !important;
+    border-radius: 12px !important;
+    color: var(--vf-text) !important;
+    min-height: 46px !important;
+}
+
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input {
+    background: #ffffff !important;
+    color: var(--vf-text) !important;
+    border: 1px solid #d9dee8 !important;
+    border-radius: 12px !important;
+}
+
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stNumberInput"] input:focus {
+    border: 1px solid var(--vf-red) !important;
+    box-shadow: 0 0 0 2px rgba(230, 0, 0, 0.12) !important;
+}
+
+label, .stSelectbox label, .stNumberInput label, .stTextInput label {
+    color: var(--vf-text) !important;
+    font-weight: 600 !important;
+}
+
 div.stButton > button,
 div[data-testid="stFormSubmitButton"] > button {
     width: 100%;
     border: none;
     border-radius: 14px;
-    background: linear-gradient(90deg, #14b8a6, #0ea5e9);
+    background: linear-gradient(90deg, var(--vf-red), var(--vf-red-dark));
     color: white;
     font-weight: 700;
-    padding: .7rem 1rem;
-    box-shadow: 0 8px 20px rgba(20,184,166,.25);
+    padding: .72rem 1rem;
+    box-shadow: 0 8px 18px rgba(230, 0, 0, 0.18);
+}
+
+div.stButton > button:hover,
+div[data-testid="stFormSubmitButton"] > button:hover {
+    background: linear-gradient(90deg, #ff1a1a, var(--vf-red));
+    transform: translateY(-1px);
+}
+
+div.stButton > button:focus,
+div[data-testid="stFormSubmitButton"] > button:focus {
+    box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.16);
+}
+
+hr {
+    border-color: #eef0f4;
+}
+
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--vf-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+}
+
+[data-testid="stAlert"] {
+    border-radius: 14px;
+}
+
+h1, h2, h3 {
+    color: var(--vf-text);
+}
+
+section[data-testid="stSidebar"] {
+    background: #ffffff;
 }
 </style>
 """, unsafe_allow_html=True)
-
 
 def resolve_data_file():
     for file_name in POSSIBLE_DATA_FILES:
